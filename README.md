@@ -1,4 +1,4 @@
-## DC alliance bot
+## Sky bot
 
 A private, multipurpose Discord bot with advanced moderation tools, YouTube video notifications, and a GitHub-powered feed editor. Built for server admins who want clean automation and simple controls.
 
@@ -17,11 +17,6 @@ A private, multipurpose Discord bot with advanced moderation tools, YouTube vide
 ### Utility
 - **Welcome/Leave Messages** — Greets users on join/leave
 - **YouTube Notifier** — Automatically posts new videos from specified channels
-- **Reaction Roles** — Lets users assign roles with reactions
-
-## Dashboard
-
-A minimal, frontend-only dashboard that uses the **GitHub API** to directly manage the YouTube feed (`feeds.json`) for auto-posting. No backend server required!
 
 
 ## Tech Stack
@@ -33,7 +28,5 @@ A minimal, frontend-only dashboard that uses the **GitHub API** to directly mana
 
 ## Contributors
 - **Drago**
-- **Devil**
-- **BlackWing**
 
 
