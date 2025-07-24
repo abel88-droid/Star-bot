@@ -3,7 +3,7 @@ require("dotenv").config();
 const fs = require("fs");
 const path = require("path");
 
-const clientId = "1340222971847114762";
+const clientId = "1389230130613977149";
 const token = process.env.DISCORD_TOKEN;
 
 if (!token) {
@@ -11,7 +11,7 @@ if (!token) {
     process.exit(1);
 }
 
-// Recursive function to get all .js files in slash commands folder & subfolders
+
 function getAllSlashCommandFiles(dir) {
     let results = [];
     const list = fs.readdirSync(dir);
