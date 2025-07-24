@@ -159,72 +159,8 @@ client.on("interactionCreate", async interaction => {
 
 client.once("ready", async () => {
     console.log(`✅ Logged in as ${client.user.tag}!`);
-    console.log("ℹ️ Running reaction role scripts...");
-
-    try {
-        const reactionRolesUnlock1 = require("./events/reactionRoles_unlockchannel1.js");
-        const reactionRolesUnlock2 = require("./events/reactionRoles_unlockchannel2.js");
-        const reactionRolesUnlock3 = require("./events/reactionRoles_unlockchannel3.js");
-        const reactionRolesPECall = require("./events/reactionRoles_PEcall.js");
-        const reactionRolesGCcall = require("./events/reactionRoles_GCcall.js");
-        const reactionRolesTournament = require("./events/reactionRolesTournament.js");
-        const reactionRolesRules = require("./events/reactionRoles_Rules.js"); 
-
-        client.reactionRoleMessages = {
-            unlockMsgId: await reactionRolesUnlock3.execute(client),
-            peCallMsgId: await reactionRolesPECall.execute(client),
-            gcCallMsgId: await reactionRolesGCcall.execute(client),
-            tournamentMsgId: await reactionRolesTournament.execute(client),
-            rulesMsgId: await reactionRolesRules.execute(client), 
-        };
-
-        await reactionRolesUnlock1.execute(client);
-        await reactionRolesUnlock2.execute(client);
-
-        console.log("✅ Reaction role scripts executed.");
-    } catch (error) {
-        console.error("❌ Error running reaction role scripts:", error);
-    }
+    console.log("ℹ️ Reaction role scripts removed from startup.");
 });
-
-const handleReactionRole = async (reaction, user, add) => {
-    if (user.bot || !client.reactionRoleMessages) return;
-
-    let roleId;
-    if (reaction.message.id === client.reactionRoleMessages.unlockMsgId) {
-        roleId = "842089922768797726";
-    } else if (reaction.message.id === client.reactionRoleMessages.peCallMsgId) {
-        roleId = "840250757235212339";
-    } else if (reaction.message.id === client.reactionRoleMessages.gcCallMsgId) {
-        roleId = "1026142060937498685";
-    } else if (reaction.message.id === client.reactionRoleMessages.tournamentMsgId) {
-        if (reaction.emoji.name === "🏁") {
-            roleId = "963429908619616286";
-        } else if (reaction.emoji.name === "🏞️") {
-            roleId = "1103695688363159572";
-        }
-    } else if (reaction.message.id === client.reactionRoleMessages.rulesMsgId) { 
-        roleId = "1345651591583367168"; 
-    } else {
-        return;
-    }
-
-    try {
-        const member = await reaction.message.guild.members.fetch(user.id);
-        if (add) {
-            await member.roles.add(roleId);
-            console.log(`✅ Added role ${roleId} to ${user.tag}`);
-        } else {
-            await member.roles.remove(roleId);
-            console.log(`❌ Removed role ${roleId} from ${user.tag}`);
-        }
-    } catch (error) {
-        console.error("❌ Error modifying role:", error);
-    }
-};
-
-client.on("messageReactionAdd", (reaction, user) => handleReactionRole(reaction, user, true));
-client.on("messageReactionRemove", (reaction, user) => handleReactionRole(reaction, user, false));
 
 const express = require('express');
 const app = express();
@@ -233,4 +169,4 @@ const PORT = process.env.PORT || 3000;
 app.get('/', (req, res) => res.send('Bot is alive!'));
 app.listen(PORT, () => console.log(`Web server running on port ${PORT}`));
 
-client.login(process.env.TOKEN);
+client.login(process.env.DISCORD_TOKEN);
